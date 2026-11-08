@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Bushcraft Survival - Game Dã Ngoại Sinh Tồn</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Canvas vẽ game chính -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI Chỉ số Sinh tồn -->
+        <div id="hud-overlay">
+            <div class="stat-bar"><span class="label">Máu</span><div class="bar-bg"><div id="health-bar" class="bar-fill health"></div></div><span class="val" id="health-val">100</span></div>
+            <div class="stat-bar"><span class="label">Thể lực</span><div class="bar-bg"><div id="stamina-bar" class="bar-fill stamina"></div></div><span class="val" id="stamina-val">100</span></div>
+            <div class="stat-bar"><span class="label">Đói</span><div class="bar-bg"><div id="hunger-bar" class="bar-fill hunger"></div></div><span class="val" id="hunger-val">100</span></div>
+            <div class="stat-bar"><span class="label">Khát</span><div class="bar-bg"><div id="thirst-bar" class="bar-fill thirst"></div></div><span class="val" id="thirst-val">100</span></div>
+            <div class="stat-bar"><span class="label">Ấm</span><div class="bar-bg"><div id="warmth-bar" class="bar-fill warmth"></div></div><span class="val" id="warmth-val">100</span></div>
+        </div>
+
+        <!-- Đồng hồ + bản đồ nhỏ -->
+        <div id="top-right">
+            <div id="clock"></div>
+            <canvas id="minimap" width="140" height="105"></canvas>
+        </div>
+
+        <!-- Thông báo tương tác (Press E) -->
+        <div id="interaction-prompt" class="hidden">Nhấn <kbd>E</kbd> để tương tác</div>
+
+        <!-- Bảng thông báo nhật ký game -->
+        <div id="log-box"></div>
+
+        <!-- Thanh nhanh: 1-3 ăn, 4-6 đặt công trình (chạm được trên điện thoại) -->
+        <div id="hotbar"></div>
+
+        <!-- Điều khiển cảm ứng (chỉ hiện trên điện thoại / máy tính bảng) -->
+        <div id="touch-controls">
+            <div id="joy-zone"></div>
+            <div id="joy-base"><div id="joy-knob"></div></div>
+            <button id="btn-craft" class="tbtn small" aria-label="Sổ tay chế tạo">📖</button>
+            <button id="btn-run" class="tbtn small" aria-label="Chạy">🏃</button>
+            <button id="btn-e" class="tbtn big" aria-label="Tương tác">E</button>
+        </div>
+
+        <!-- Menu Crafting (Mở bằng phím C, game tạm dừng) -->
+        <div id="crafting-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Sổ Tay Dã Ngoại (Chế Tạo)</h2>
+                <div id="materials"></div>
+                <div id="recipe-list"></div>
+                <button id="close-crafting">Đóng (C)</button>
+            </div>
+        </div>
+
+        <!-- Màn hình thất bại -->
+        <div id="gameover" class="modal hidden">
+            <div class="modal-content gameover-content">
+                <h2>Bạn đã gục ngã</h2>
+                <p id="gameover-cause"></p>
+                <p id="gameover-stats"></p>
+                <button id="restart-btn">Chơi lại (R)</button>
+            </div>
+        </div>
+
+        <!-- Bảng Hướng dẫn phím bấm -->
+        <div id="controls-hint">
+            <b>WASD / Mũi tên:</b> di chuyển · <b>Shift:</b> chạy<br>
+            <b>E:</b> tương tác (giữ để uống nước) · <b>C:</b> chế tạo<br>
+            <b>1-3:</b> ăn · <b>4-6:</b> đặt bếp / lều / bẫy
+        </div>
+    </div>
+
+    <div id="rotate-hint">📱 Hãy xoay ngang điện thoại để chơi</div>
+
+    <!-- Tải các Script Game -->
+    <script src="js/inventory.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/touch.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
